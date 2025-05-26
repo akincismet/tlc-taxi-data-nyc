@@ -37,13 +37,17 @@ webserver:
         port: 8080
         targetPort: 8080
         nodePort: 31880
+  startupProbe:
+    initialDelaySeconds: 60
+    periodSeconds: 10
+    failureThreshold: 20
   resources:
     requests:
-      cpu: "400m"
-      memory: "512Mi"
+      cpu: "500m"
+      memory: "1Gi"
     limits:
-      cpu: "1000m"
-      memory: "1024Mi"
+      cpu: "1"
+      memory: "2Gi"
 
 # Scheduler configuration
 scheduler:
