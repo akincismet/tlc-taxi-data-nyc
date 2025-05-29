@@ -11,7 +11,7 @@ default_args = {
     'retry_delay': timedelta(seconds=5)
 }
 
-with DAG('my_dag', default_args=default_args, schedule_interval='@daily', catchup=False) as dag:
+with DAG('my_dag', default_args=default_args, schedule_interval=None, catchup=False, is_paused_upon_creation=True ) as dag:
     t0 = BashOperator(task_id='task0', bash_command='echo "Hello! I am task0"', retries=2, retry_delay=timedelta(seconds=15))
 
     t1 = BashOperator(task_id='task1',
