@@ -11,7 +11,7 @@ default_args = {
     'retry_delay': timedelta(seconds=5)
 }
 
-with DAG('sql_operator_dag', default_args=default_args, schedule_interval='@once', catchup=False) as dag:
+with DAG('sql_operator_dag', default_args=default_args, schedule_interval=None, catchup=False , is_paused_upon_creation=True ) as dag:
     create_table = SQLExecuteQueryOperator(
         task_id="create_table",
         conn_id='postgresql_traindb_conn',
