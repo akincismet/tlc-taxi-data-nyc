@@ -8,4 +8,10 @@ docker run --rm --name spark -p 8888:8888 -p 4040:4040 veribilimiokulu/pyspark:3
 docker exec -it spark jupyter lab --ip 0.0.0.0 --port 8888 --allow-root
 ```
 
-### 
+### Run spark docker container 2 
+docker run --rm --name spark \
+       --add-host host.docker.internal:host-gateway \
+       -p 8888:8888 -p 4040:4040 \
+       veribilimiokulu/pyspark:3.5.3_python-3.12_java17 sleep infinity
+
+
