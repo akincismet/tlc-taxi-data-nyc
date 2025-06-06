@@ -11,7 +11,7 @@ load_dotenv()
 AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
 REGION_NAME = os.getenv('REGION_NAME')
-S3_ENDPOINT_URL = os.getenv('S3_ENDPOINT_URL')
+S3_ENDPOINT_URL = os.getenv('S3_ENDPOINT')
 REPO_OWNER = os.getenv('REPO_OWNER')
 GITHUB_TOKEN = os.getenv('GITHUB_TOKEN')
 
@@ -86,7 +86,8 @@ def upload_to_s3(local_dir: Path, bucket_name: str, s3_prefix: str, s3_client=No
         for file in files:
             files_found = True
             local_file_path = Path(root) / file
-            s3_key = f"{s3_prefix}/{local_file_path}"
+            rel_path = local_file_path.relative_to(local_dir)
+            s3_key   = f"{s3_prefix}/{rel_path.as_posix()}"
 
             logger.info(f"Uploading {local_file_path} to s3://{bucket_name}/{s3_key}")
             try:
@@ -97,3 +98,10 @@ def upload_to_s3(local_dir: Path, bucket_name: str, s3_prefix: str, s3_client=No
 
     if not files_found:
         logger.warning(f"No files found in {local_dir} to upload.")
+
+if __name__ == "__main__":
+    s3_client = get_boto3_client("s3",aws_access_key_id=AWS_ACCESS_KEY_ID,aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
+                                 region_name = REGION_NAME,endpoint_url=S3_ENDPOINT_URL)
+    #download_github_dir(repo_owner=REPO_OWNER,repo_name='datasets',dir_path = 'yellow_tripdata_partitioned_by_day/year=2023/month=10',branch='master',local_dir='data',token=GITHUB_TOKEN)
+
+    upload_to_s3(local_dir=Path('data'),bucket_name='bronze', s3_prefix='yellow_tripdata_partitioned_by_day', s3_client = s3_client)
