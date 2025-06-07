@@ -15,7 +15,7 @@ def github_to_s3_dag():
         task_id="run_ingestion_container",
         name="github-to-s3-ingester",
         namespace="airflow",
-        image="ghcr.io/akincismet/github-ingester:latest",
+        image="akincismet/github-ingester:1.1",
         cmds=["python", "/app/src/main.py"],
         get_logs=True,
         env_vars={
