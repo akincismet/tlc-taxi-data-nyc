@@ -1,3 +1,4 @@
 .idea
 git_secrets.yaml
 .venv_ingest
+04_data_ingestion/.env
