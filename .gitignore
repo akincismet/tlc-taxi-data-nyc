@@ -2,3 +2,5 @@
 git_secrets.yaml
 .venv_ingest
 04_data_ingestion/.env
+05_data_transformation/.env
+.venv_transform
