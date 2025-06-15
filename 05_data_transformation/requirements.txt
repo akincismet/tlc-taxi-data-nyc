@@ -1,4 +1,0 @@
-pyspark==3.5.0      # core engine
-boto3==1.34.100     # MinIO/S3 presigned ops if needed
-pyarrow>=14.0.0     # columnar IO used by Spark
-python-dotenv>=1.0  # load .env files (same as ingestion)
