@@ -17,6 +17,7 @@ def github_to_s3_dag():
         namespace="airflow",
         image="akincismet/github-ingester:1.3",
         image_pull_policy="Always",
+        is_delete_operator_pod =False,
         cmds=["python", "/app/src/main.py"],
         get_logs=True,
         env_vars={
