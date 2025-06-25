@@ -17,7 +17,7 @@ def github_to_s3_dag():
         namespace="airflow",
         image="akincismet/github-ingester:1.3",
         image_pull_policy="Always",
-        is_delete_operator_pod =False,
+        is_delete_operator_pod=False,
         cmds=["python", "/app/src/main.py"],
         get_logs=True,
         env_vars={
@@ -38,7 +38,7 @@ def github_to_s3_dag():
             "REGION_NAME": "{{ var.value.REGION_NAME }}",
             "S3_ENDPOINT": "{{ var.value.S3_ENDPOINT }}",
         },
-        is_delete_operator_pod=True,
+
     )
 
     # Do NOT call ingest_task(), just let it be registered in the DAG
