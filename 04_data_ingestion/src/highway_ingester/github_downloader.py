@@ -86,7 +86,8 @@ def upload_to_s3(local_dir: Path, bucket_name: str, s3_prefix: str, s3_client=No
         for file in files:
             files_found = True
             local_file_path = Path(root) / file
-            s3_key = f"{s3_prefix}/{local_file_path}"
+            rel_path = local_file_path.relative_to(local_dir)
+            s3_key   = f"{s3_prefix}/{rel_path.as_posix()}"
 
             logger.info(f"Uploading {local_file_path} to s3://{bucket_name}/{s3_key}")
             try:
