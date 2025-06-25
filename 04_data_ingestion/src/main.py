@@ -25,5 +25,5 @@ s3_client = get_boto3_client(service_name="s3", aws_access_key_id=os.getenv('AWS
                              aws_secret_access_key=os.getenv('AWS_SECRET_ACCESS_KEY'), region_name=os.getenv('REGION_NAME'),
                              endpoint_url=os.getenv('S3_ENDPOINT'))
 
-upload_to_s3(local_dir=local_downloaded_path, bucket_name='bronze', s3_prefix='yellow_tripdata_partitioned_by_day',
+upload_to_s3(local_dir=local_downloaded_path, bucket_name='bronze', s3_prefix=config['data_path'],
 s3_client=s3_client)
