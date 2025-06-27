@@ -7,7 +7,7 @@ from datetime import datetime
     schedule_interval=None,
     start_date=datetime(2024, 1, 1),
     catchup=False,
-    tags=["dimension"],
+    tags=["fact"],
     template_searchpath='/opt/airflow/dags/repo/airflow/dags/spark_on_k8s',
     is_paused_upon_creation=True
 )
