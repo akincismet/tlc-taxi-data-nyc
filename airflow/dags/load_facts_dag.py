@@ -11,7 +11,7 @@ from datetime import datetime
     template_searchpath='/opt/airflow/dags/repo/airflow/dags/spark_on_k8s',
     is_paused_upon_creation=True
 )
-def load_dimensions_dag():
+def load_facts_dag():
     ingest_task = SparkKubernetesOperator(task_id="load-facts",
         image="spark-load_facts:1.0",
         namespace="default",
@@ -24,4 +24,4 @@ def load_dimensions_dag():
     # If you had more tasks, you'd define dependencies like: task1 >> task2
 
 
-dag_instance = load_dimensions_dag()
+dag_instance = load_facts_dag()
