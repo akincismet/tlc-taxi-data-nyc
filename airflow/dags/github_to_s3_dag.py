@@ -81,9 +81,9 @@ def github_to_s3_dag():
     # Main ingestion task
     ingest_task = KubernetesPodOperator(
         task_id="run_ingestion_container",
-        name="akincismet/github-to-s3-ingester",
+        name="github-to-s3-ingester",
         namespace="airflow",
-        image= "github-ingester:1.4",
+        image= "akincismet/github-ingester:1.4",
         image_pull_policy="IfNotPresent",  # Check local images first
         cmds=["python", "/app/src/main.py"],
         get_logs=True,
