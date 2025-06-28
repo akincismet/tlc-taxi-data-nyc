@@ -41,10 +41,13 @@ spec:
     "spark.hadoop.fs.s3a.connection.establish.timeout": "5000"
     "spark.hadoop.fs.s3a.connection.timeout": "10000"
     "spark.jars.ivy": "/tmp/.ivy2"
-    "spark.kubernetes.executor.request.cores": "500m"
+    "spark.kubernetes.executor.request.cores": "200m"
+    "spark.kubernetes.driver.request.cores": "200m"
+    "spark.executor.memoryOverhead": "384m"
+    "spark.driver.memoryOverhead": "384m"
   driver:
     cores: 1
-    memory: "512m"
+    memory: "256m"
     labels:
       version: 3.5.3
     serviceAccount: spark
@@ -54,7 +57,7 @@ spec:
   executor:
     cores: 1
     instances: 1
-    memory: "512m"
+    memory: "256m"
     labels:
       version: 3.5.3
     volumeMounts:
