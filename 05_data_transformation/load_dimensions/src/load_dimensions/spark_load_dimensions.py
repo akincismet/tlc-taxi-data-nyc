@@ -100,9 +100,8 @@ def write_dimtime(spark: SparkSession, table_name: str = "dimtime", start_date: 
     except Exception as e:
         logger.exception(f"Error generating DataFrame: {str(e)}")
 
-    dimtime_df2 = (dimtime_df.withColumn("unix_time_minutes", F.round(F.unix_timestamp(F.col("minutes")) / 60) * 60)
-                   .withColumn("timeid", F.col("unix_time_minutes").cast("integer"))
-                   .withColumn("Date", F.to_date("minutes"))
+    dimtime_df2 = (dimtime_df.withColumn("timeid", F.date_format("minutes", "yyyyMMddHHmm").cast("long"))
+                    .withColumn("Date", F.to_date("minutes"))
                    .withColumn("dayofmonth", F.dayofmonth("minutes"))
                    .withColumn("weekofyear", ((F.dayofyear("minutes") - 1) / 7 + 1).cast("int"))
                    .withColumn("month", F.month("minutes").cast("smallint"))
