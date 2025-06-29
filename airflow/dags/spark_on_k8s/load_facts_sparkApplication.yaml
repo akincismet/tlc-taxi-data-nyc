@@ -7,7 +7,7 @@ spec:
   type: Python
   pythonVersion: "3"
   mode: cluster
-  image: "spark-load_facts:1.0"
+  image: "spark-load-facts:1.0"
   imagePullPolicy: IfNotPresent
   mainApplicationFile: local:///app/load_facts/spark_load_facts.py
   sparkVersion: "3.5.3"

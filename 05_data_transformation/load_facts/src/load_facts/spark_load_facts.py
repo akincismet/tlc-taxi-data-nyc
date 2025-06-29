@@ -4,7 +4,7 @@ from pyspark.sql import SparkSession, functions as F
 from pyspark.sql.types import *
 import logging
 
-DATA_DIR = "s3a://bronze/yellow_tripdata_partitioned_by_day/downloaded_yellow_tripdata/year=2024/month=1"
+DATA_DIR = "s3a://bronze/yellow_tripdata_partitioned_by_day/year=2024/month=1/day=1"
 
 # Ensure the log directory exists
 # Logging config
